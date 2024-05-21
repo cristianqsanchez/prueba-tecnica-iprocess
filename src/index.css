@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --primary: #FC4024;
+  --primary-light: #FF7A66;
+  --success: #10B981;
+  --neutral: #E2E8F0;
+}
