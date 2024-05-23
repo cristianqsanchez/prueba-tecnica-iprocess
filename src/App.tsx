@@ -1,7 +1,13 @@
+import { DEFAULT_SETTINGS } from '@/consts'
+import { PaymentsSettingsProvider } from '@/context/payments-settings'
+import { Header } from '@/components/header'
+
 function App () {
   return (
     <>
-      <h1>Prueba Técnica iProcess</h1>
+      <PaymentsSettingsProvider {...DEFAULT_SETTINGS}>
+        <Header />
+      </PaymentsSettingsProvider>
     </>
   )
 }
