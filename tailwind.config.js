@@ -9,7 +9,7 @@ export default {
       colors: {
         primary: 'var(--primary)',
         'primary-light': 'var(--primary-light)',
-        succes: 'var(--success)',
+        success: 'var(--success)',
         neutral: 'var(--neutral)'
       }
     }
