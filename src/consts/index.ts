@@ -10,3 +10,8 @@ export const PAYMENT_STATES = {
   NEXTPAY: 'NextToPay',
   PAID: 'Paid'
 } as const
+
+export const APP_STATUS = {
+  ALL_PAID: '¡Todos tus pagos fueron realizados!',
+  SUCCESS_PAY: 'Pago Realizado'
+} as const
