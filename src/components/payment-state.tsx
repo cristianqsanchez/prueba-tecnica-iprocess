@@ -9,6 +9,7 @@ type Props = {
 
 export function PaymentState ({ state, ...props }: Props) {
   const [isHover, setIsHover] = useState(false)
+
   const variants: Record<State, string> = {
     NextToPay: 'bg-white border-primary p-4',
     Paid: 'bg-success p-3 border-success text-2xl',
@@ -21,6 +22,7 @@ export function PaymentState ({ state, ...props }: Props) {
       <button
         onMouseEnter={() => setIsHover(true)}
         onMouseLeave={() => setIsHover(false)}
+        disabled={state === PAYMENT_STATES.PENDING || state === PAYMENT_STATES.PAID}
         className={`rounded-full border-[3px] mb-2 size-16 ${variant}`}
         {...props}
       >
