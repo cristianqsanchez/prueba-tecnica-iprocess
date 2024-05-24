@@ -1,7 +1,7 @@
 import React, { createContext, useState } from 'react'
 import { Payment } from '@/types'
 import { formatInputDate, randomID } from '@/utils'
-import { PAYMENT_STATES } from '@/consts'
+import { PAYMENT_STATES, DEFAULT_SETTINGS } from '@/consts'
 
 type PaymentsProps = {
   payments: Payment[]
@@ -10,14 +10,14 @@ type PaymentsProps = {
 
 export const Payments = createContext<PaymentsProps>({
   payments: [],
-  setPayments: () => {}
+  setPayments: () => { }
 })
 
-export function PaymentsProvider ({ children } : {children: React.ReactNode}) {
+export function PaymentsProvider({ children }: { children: React.ReactNode }) {
   const [payments, setPayments] = useState<PaymentsProps['payments']>([{
     id: randomID(),
-    amount: 182,
-    currency: 'USD',
+    amount: DEFAULT_SETTINGS.amount,
+    currency: DEFAULT_SETTINGS.currency,
     dueDate: formatInputDate(new Date()),
     state: PAYMENT_STATES.NEXTPAY,
     name: 'Anticipo',
