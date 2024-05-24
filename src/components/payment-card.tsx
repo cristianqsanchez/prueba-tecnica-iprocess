@@ -53,7 +53,9 @@ export function PaymentCard (payment: PaymentProps) {
         />
         : <PaymentAmount amount={payment.amount} currency={payment.currency} percentage={payment.percentage} />}
 
-      {isEditing && payments.length > 1 &&
+      {isEditing &&
+        payments.length > 1 &&
+        payment.state !== PAYMENT_STATES.PAID &&
         <PaymentPercentage id={payment.id} percentage={payment.percentage} />}
 
       {payment.state === PAYMENT_STATES.PAID
