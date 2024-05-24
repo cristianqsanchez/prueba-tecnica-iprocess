@@ -3,18 +3,24 @@ import { Action } from './action'
 import { useRef } from 'react'
 import { Modal } from './modal'
 import { PaymentMethods } from '@/types'
+import { formatInputDate } from '@/utils'
+import { toast } from 'sonner'
+import { APP_STATUS } from '@/consts'
 
-export function PaymentForm ({ id, isOpen, onClose }:
-  { id: string, isOpen: boolean, onClose: () => void }) {
+export function PaymentForm({ id, dueDate, isOpen, onClose }:
+  { id: string, dueDate: string, isOpen: boolean, onClose: () => void }) {
   const { handlePay } = usePayments()
   const paymentMethodRef = useRef<HTMLSelectElement>(null)
 
   const handleSave = () => {
     const paymentMethod = paymentMethodRef.current?.value as PaymentMethods
-    if (paymentMethod) {
+
+    if (paymentMethod && dueDate !== formatInputDate(new Date())) {
       handlePay(id, paymentMethod)
       onClose()
     }
+    toast.warning(APP_STATUS.DEFER_PAYMENT)
+    onClose()
   }
 
   return (
