@@ -13,7 +13,8 @@ export const Payments = createContext<PaymentsProps>({
   setPayments: () => { }
 })
 
-export function PaymentsProvider({ children }: { children: React.ReactNode }) {
+// TODO: <GET>: Fetch a todos los pagos
+export function PaymentsProvider ({ children }: { children: React.ReactNode }) {
   const [payments, setPayments] = useState<PaymentsProps['payments']>([{
     id: randomID(),
     amount: DEFAULT_SETTINGS.amount,

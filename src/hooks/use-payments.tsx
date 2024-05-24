@@ -14,6 +14,7 @@ export function usePayments () {
     return payments.every(({ state }) => state === PAYMENT_STATES.PAID)
   }, [payments])
 
+  // TODO: <POST>: Añadir pago
   const handleAddPayment = useCallback((index: number) => {
     if (allIsPaid) return
 
@@ -56,6 +57,7 @@ export function usePayments () {
     })
   }, [allIsPaid, changeToEditingMode, setPayments])
 
+  // TODO: <PATCH>: Manejar Estado de Pago
   const handlePay = (id: string, paymentMethod: PaymentMethods) => {
     setPayments(prevPayments => {
       const updatedPayments = prevPayments.map((payment, index) => {
@@ -74,6 +76,7 @@ export function usePayments () {
     toast.success(APP_STATUS.SUCCESS_PAY)
   }
 
+  // TODO: <PATCH>: Actualizar Info de Pago
   const handleChange = (id: string, field: keyof Payment, value: Payment[keyof Payment]) => {
     setPayments(prevPayments => {
       const updatedPayments = prevPayments.map(payment =>
