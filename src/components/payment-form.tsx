@@ -7,7 +7,7 @@ import { formatInputDate } from '@/utils'
 import { toast } from 'sonner'
 import { APP_STATUS } from '@/consts'
 
-export function PaymentForm({ id, dueDate, isOpen, onClose }:
+export function PaymentForm ({ id, dueDate, isOpen, onClose }:
   { id: string, dueDate: string, isOpen: boolean, onClose: () => void }) {
   const { handlePay } = usePayments()
   const paymentMethodRef = useRef<HTMLSelectElement>(null)
@@ -15,12 +15,13 @@ export function PaymentForm({ id, dueDate, isOpen, onClose }:
   const handleSave = () => {
     const paymentMethod = paymentMethodRef.current?.value as PaymentMethods
 
-    if (paymentMethod && dueDate !== formatInputDate(new Date())) {
+    if (paymentMethod && dueDate === formatInputDate(new Date())) {
       handlePay(id, paymentMethod)
       onClose()
+    } else {
+      toast.warning(APP_STATUS.DEFER_PAYMENT)
+      onClose()
     }
-    toast.warning(APP_STATUS.DEFER_PAYMENT)
-    onClose()
   }
 
   return (
