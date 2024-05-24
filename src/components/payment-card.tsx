@@ -27,7 +27,12 @@ export function PaymentCard (payment: PaymentProps) {
   return (
     <article className='flex flex-col items-center gap-2'>
       <PaymentState state={payment.state} onClick={openModal} />
-      <PaymentForm id={payment.id} isOpen={isModalOpen} onClose={closeModal} />
+      <PaymentForm
+        id={payment.id}
+        dueDate={payment.dueDate}
+        isOpen={isModalOpen}
+        onClose={closeModal}
+      />
         <input
           type="text"
           value={payment.name}
