@@ -14,4 +14,5 @@ export type Payment = {
   currency: Currency
   percentage: number
   dueDate: string
+  paymentMethod?: PaymentMethods
 }
