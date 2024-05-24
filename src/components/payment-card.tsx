@@ -46,11 +46,11 @@ export function PaymentCard (payment: PaymentProps) {
           value={payment.amount.toFixed(1)}
           max={amount}
           min={0}
-          readOnly={!isEditing || payment.state === PAYMENT_STATES.PAID}
+          readOnly={!isEditing || payment.state === PAYMENT_STATES.PAID || payments.length === 1}
           onChange={handleAmountChange}
         />
 
-        {isEditing &&
+        {isEditing && payments.length > 1 &&
         <PaymentPercentage id={payment.id} percentage={payment.percentage}/>}
 
         {payment.state === PAYMENT_STATES.PAID
