@@ -12,7 +12,7 @@ import { PaymentPercentage } from './payment-percentage'
 export function PaymentCard (payment: PaymentProps) {
   const { isEditing, amount } = usePaymentsSettings()
   const { isModalOpen, openModal, closeModal } = useModal()
-  const { handleChange } = usePayments()
+  const { payments, handleChange } = usePayments()
 
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target
