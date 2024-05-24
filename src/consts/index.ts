@@ -13,5 +13,6 @@ export const PAYMENT_STATES = {
 
 export const APP_STATUS = {
   ALL_PAID: '¡Todos tus pagos fueron realizados!',
-  SUCCESS_PAY: 'Pago Realizado'
+  SUCCESS_PAY: 'Pago Realizado',
+  DEFER_PAYMENT: 'Aun quedan días para tu pago'
 } as const
