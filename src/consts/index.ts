@@ -9,7 +9,7 @@ export const PAYMENT_STATES = {
   PENDING: 'Pending',
   NEXTPAY: 'NextToPay',
   PAID: 'Paid'
-} as const
+}
 
 export const APP_STATUS = {
   ALL_PAID: '¡Todos tus pagos fueron realizados!',
