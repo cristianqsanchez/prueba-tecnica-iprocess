@@ -8,6 +8,7 @@ import { useModal } from '@/hooks/use-modal'
 import { PaymentState } from './payment-state'
 import { PaymentForm } from './payment-form'
 import { PaymentPercentage } from './payment-percentage'
+import { PaymentAmount } from './payment-amount'
 
 export function PaymentCard (payment: PaymentProps) {
   const { isEditing, amount } = usePaymentsSettings()
@@ -33,15 +34,16 @@ export function PaymentCard (payment: PaymentProps) {
         isOpen={isModalOpen}
         onClose={closeModal}
       />
-        <input
-          type="text"
-          value={payment.name}
-          readOnly={!isEditing || payment.state === PAYMENT_STATES.PAID}
-          onChange={(e) => handleChange(payment.id, 'name', e.target.value)}
-          className='text-xl font-semibold text-center'
-        />
+      <input
+        type="text"
+        value={payment.name}
+        readOnly={!isEditing || payment.state === PAYMENT_STATES.PAID}
+        onChange={(e) => handleChange(payment.id, 'name', e.target.value)}
+        className='text-xl font-semibold text-center'
+      />
 
-        <input
+      {isEditing
+        ? <input
           type="number"
           value={payment.amount.toFixed(1)}
           max={amount}
@@ -49,20 +51,21 @@ export function PaymentCard (payment: PaymentProps) {
           readOnly={!isEditing || payment.state === PAYMENT_STATES.PAID || payments.length === 1}
           onChange={handleAmountChange}
         />
+        : <PaymentAmount amount={payment.amount} currency={payment.currency} percentage={payment.percentage} />}
 
-        {isEditing && payments.length > 1 &&
-        <PaymentPercentage id={payment.id} percentage={payment.percentage}/>}
+      {isEditing && payments.length > 1 &&
+        <PaymentPercentage id={payment.id} percentage={payment.percentage} />}
 
-        {payment.state === PAYMENT_STATES.PAID
-          ? <span className='text-success font-semibold'>Pagado {new Date(payment.dueDate).toLocaleDateString('es', { year: 'numeric', month: 'short', day: 'numeric' })} <br /> con {payment.paymentMethod}</span>
-          : <input
+      {payment.state === PAYMENT_STATES.PAID
+        ? <span className='text-success font-semibold'>Pagado {new Date(payment.dueDate).toLocaleDateString('es', { year: 'numeric', month: 'short', day: 'numeric' })} <br /> con {payment.paymentMethod}</span>
+        : <input
           type="date"
           value={payment.dueDate}
           min={formatInputDate(new Date())}
           readOnly={!isEditing}
           onChange={(e) => handleChange(payment.id, 'dueDate', e.target.value)}
         />
-        }
+      }
 
     </article>
   )
